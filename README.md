@@ -14,7 +14,7 @@ npm install umi-plugin-mobx-store --dev
 
 ## Usage
 
-> Visit [here](/example)) to see the whole example
+> Visit [here](/example) to see the whole example
 
 Create a model file and use the standard mobx syntax to define your models under `models/` dir:
 
