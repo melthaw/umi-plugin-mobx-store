@@ -1,0 +1,14 @@
+{
+  "name": "umi-plugin-mobx-store-example",
+  "version": "0.9.0",
+  "description": "Example for umi-plugin-mobx-store",
+  "scripts": {
+    "start": "umi dev"
+  },
+  "devDependencies": {
+    "umi": "^3.0.0"
+  },
+  "dependencies": {
+    "umi-plugin-mobx-store": "0.9.0"
+  }
+}
