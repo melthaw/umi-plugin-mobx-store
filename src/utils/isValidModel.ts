@@ -32,7 +32,6 @@ export default function isValidModel({content}: { content: string }) {
 
     let typesHasImported = false;
     // let modelHasDefined = false;
-    // let modelInstanceHasCreated = false;
     let modelInstanceHasExported = false;
     const visitor: utils.traverse.Visitor = {
         Program: {
@@ -66,7 +65,7 @@ export default function isValidModel({content}: { content: string }) {
                     program.traverse({
                         ExportDefaultDeclaration(path: utils.traverse.NodePath<ExportDefaultDeclaration>) {
                             const declaration = path.node.declaration;
-                            if (t.isCallExpression(declaration) || t.isIdentifier(declaration)) {
+                            if (t.isNewExpression(declaration) || t.isIdentifier(declaration)) {
                                 modelInstanceHasExported = true;
                             }
                         },
@@ -78,6 +77,6 @@ export default function isValidModel({content}: { content: string }) {
 
     traverse.default(ast, visitor);
 
-    // return typesHasImported && modelHasDefined && modelInstanceHasCreated && modelInstanceHasExported;
+    // return typesHasImported && modelHasDefined && modelInstanceHasExported;
     return typesHasImported && modelInstanceHasExported;
 }
