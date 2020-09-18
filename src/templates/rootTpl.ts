@@ -1,10 +1,14 @@
 export default `
 {{{ imports }}}
 
-const root = {
-{{{ store }}}
-};
+class RootStore {
+    {{{ declareFields }}}
 
-export default root;
+    constructor() {
+        {{{ initFields }}}
+    }
+}
+
+export default new RootStore()
 
 `;

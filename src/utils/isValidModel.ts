@@ -5,6 +5,7 @@ import {
     CallExpression,
     MemberExpression,
     ExportDefaultDeclaration,
+    ExportNamedDeclaration,
     ImportSpecifier,
     ImportDefaultSpecifier,
     ImportNamespaceSpecifier,
@@ -12,6 +13,7 @@ import {
 
 const {t, traverse} = utils;
 
+// https://astexplorer.net/
 export default function isValidModel({content}: { content: string }) {
     const {parser} = utils;
     const ast = parser.parse(content, {
@@ -63,9 +65,15 @@ export default function isValidModel({content}: { content: string }) {
                 // if (typesHasImported && modelHasDefined) {
                 if (typesHasImported) {
                     program.traverse({
-                        ExportDefaultDeclaration(path: utils.traverse.NodePath<ExportDefaultDeclaration>) {
+                        // ExportDefaultDeclaration(path: utils.traverse.NodePath<ExportDefaultDeclaration>) {
+                        //     const declaration = path.node.declaration;
+                        //     if (t.isNewExpression(declaration) || t.isIdentifier(declaration)) {
+                        //         modelInstanceHasExported = true;
+                        //     }
+                        // },
+                        ExportNamedDeclaration(path: utils.traverse.NodePath<ExportNamedDeclaration>) {
                             const declaration = path.node.declaration;
-                            if (t.isNewExpression(declaration) || t.isIdentifier(declaration)) {
+                            if (t.isClassDeclaration(declaration)) {
                                 modelInstanceHasExported = true;
                             }
                         },

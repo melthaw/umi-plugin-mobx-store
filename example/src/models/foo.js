@@ -1,17 +1,24 @@
-import { observable, action } from "mobx";
+import {observable, action} from "mobx";
 
-class Foo {
-  @observable bar = '';
+export class Foo {
 
-  @action
-  setBar(text) {
-    this.bar = text;
-  }
+    root = null;
 
-  @action
-  clearBar() {
-    this.bar = '';
-  }
+    constructor(root) {
+        this.root = root
+    }
+
+    @observable bar = '';
+
+    @action
+    setBar(text) {
+        this.bar = text;
+        this.root.foo = null
+    }
+
+    @action
+    clearBar() {
+        this.bar = '';
+    }
 }
 
-export default new Foo();
